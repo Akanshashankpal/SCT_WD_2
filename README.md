@@ -1,4 +1,4 @@
-# SCT_WD_2 — Chrono
+# SCT_WD_2 — StopWatch
 
 A responsive React stopwatch for measuring time intervals and recording lap splits.
 
