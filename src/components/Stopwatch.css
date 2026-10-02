@@ -1,0 +1,377 @@
+.app {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 20px 14px 28px;
+}
+
+.board {
+  width: min(920px, 100%);
+  display: grid;
+  gap: 22px;
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 28px;
+  padding: 22px 18px 18px;
+  box-shadow: var(--shadow);
+}
+
+.board-header {
+  display: grid;
+  gap: 4px;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--start);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.lede {
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.stage {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+}
+
+.dial {
+  position: relative;
+  width: min(280px, 78vw);
+  aspect-ratio: 1;
+}
+
+.ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring-track,
+.ring-value {
+  fill: none;
+  stroke-width: 8;
+}
+
+.ring-track {
+  stroke: var(--ring-track);
+}
+
+.ring-value {
+  stroke: var(--ink);
+  stroke-linecap: round;
+  transition: stroke 160ms ease;
+}
+
+.dial.is-running .ring-value {
+  stroke: var(--start);
+}
+
+.dial.is-paused .ring-value {
+  stroke: var(--slow);
+}
+
+.dial-readout {
+  position: absolute;
+  inset: 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.status {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dial.is-running .status {
+  color: var(--start);
+}
+
+.dial.is-paused .status {
+  color: var(--slow);
+}
+
+.time {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: clamp(1.85rem, 6.4vw, 2.7rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.time.is-long {
+  font-size: clamp(1.35rem, 4.6vw, 1.9rem);
+}
+
+.split-live {
+  display: grid;
+  gap: 2px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.split-live strong {
+  color: var(--ink);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: min(420px, 100%);
+}
+
+.control {
+  min-height: 48px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 0 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.control svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.control:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: #cfc4b4;
+}
+
+.control:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.control:focus-visible {
+  outline: 3px solid rgba(29, 107, 72, 0.35);
+  outline-offset: 2px;
+}
+
+.control:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.control.primary {
+  grid-column: 1 / -1;
+  background: var(--start);
+  border-color: var(--start);
+  color: #f7fbf8;
+}
+
+.control.primary:hover:not(:disabled) {
+  background: var(--start-press);
+  border-color: var(--start-press);
+}
+
+.control.primary.is-pause {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.control.ghost {
+  background: transparent;
+}
+
+.keys {
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.laps {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.laps-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.laps-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: -0.03em;
+}
+
+.laps-head span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.empty {
+  color: var(--muted);
+  line-height: 1.5;
+  padding: 8px 2px 12px;
+}
+
+.lap-scroll {
+  overflow: auto;
+  max-height: 280px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+  padding: 12px 14px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: #f6f1e9;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+tbody th {
+  font-weight: 600;
+}
+
+tbody td {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.92rem;
+}
+
+tbody tr + tr th,
+tbody tr + tr td {
+  border-top: 1px solid var(--line);
+}
+
+tbody th em {
+  display: inline-block;
+  margin-left: 8px;
+  font-style: normal;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+}
+
+tr.is-fast th em,
+tr.is-fast td:nth-child(2) {
+  color: var(--start);
+}
+
+tr.is-slow th em,
+tr.is-slow td:nth-child(2) {
+  color: var(--slow);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (min-width: 840px) {
+  .app {
+    padding: 32px;
+  }
+
+  .board {
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+    grid-template-areas:
+      "header header"
+      "stage laps";
+    gap: 28px 36px;
+    padding: 32px 32px 28px;
+    align-items: start;
+  }
+
+  .board-header {
+    grid-area: header;
+  }
+
+  .stage {
+    grid-area: stage;
+  }
+
+  .laps {
+    grid-area: laps;
+    border-top: 0;
+    padding-top: 8px;
+    align-self: stretch;
+  }
+
+  .lap-scroll {
+    max-height: 360px;
+  }
+
+  .dial {
+    width: min(320px, 100%);
+  }
+}
+
+@media (max-width: 380px) {
+  .keys {
+    font-size: 0.75rem;
+  }
+
+  th,
+  td {
+    padding: 10px 10px;
+  }
+}
